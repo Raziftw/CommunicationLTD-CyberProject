@@ -1,0 +1,60 @@
+Scenario:
+1. Register.
+2. Login.
+3. Password Restore.
+4. Client registartion.
+5. Mode Insecure. (SQLI + XSS) 
+6. Password Hashers HMAC + Salt. 
+
+-------------------------------------------------------------------------------------
+
+python manage.py runserver_plus --cert-file cert.pem --key-file key.pem --keep-meta-shutdown localhost:8000
+
+---------------------------------------------------------------------------------------
+
+SQLi :
+
+SQLInjcetion example in login page:
+' or 1=1# Returns users names.
+
+SQLInejction example in clinets page:
+' union select 1,version(),database()#
+
+XSS Use:
+XSS attack example in clients page:
+<svg/onload=prompt("XSSAttack")>
+
+**Show Attack using SQLI. Show that the attack does not work in secure mannaer.**
+line 174 in users - > views.py against SQLI.
+
+ ----------------------------------------
+HTTPS:
+Installed mkcert for certificate cert.pem and key.pem;
+Installed Werkzeug for runserver_plus command, (command with the cert and key files)
+and stopped --keep-meta-shutdown for clashes with django runserver command.
+TLS 1.3
+
+Password Hashing:
+HMAC + Salt
+Show him in mysql db. Password column with $;
+Salting means that you cant decode the hashing.
+use https://crackstation.net/ to show him that it cant be decoded!!
+
+Sha1 Password restoration:
+users->views.py->forgot_pwd_view
+hashlib.sha1;
+
+MySQL:
+Installed mysqlclient;
+ComminicationLTD->settings.py->DATABASES;
+makemigrations->migrate; (Setuped Django to work with mysql;)
+
+SecureMODES:
+Secure = POST;
+Vulnerable = GET;
+
+-----------------------------------------------------------------------------
+git remote add origin https://github.com/meirboko91/Login-System
+git branch -M main
+git push -u origin main
+

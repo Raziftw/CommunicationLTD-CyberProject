@@ -1,0 +1,57 @@
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+  body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  
+  .topnav {
+    overflow: hidden;
+    background-color: #333;
+  }
+  
+  .topnav a {
+    float: left;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+  }
+  
+  .topnav a:hover {
+    background-color: rgb(105, 175, 104);
+    color: black;
+  }
+  
+  .topnav.secure a.active {
+    background-color: #26b03fbb;
+    color: white;
+  }
+
+  .topnav.insecure a.active {
+    background-color: #ed0946bb;
+    color: white;
+  }
+  </style>
+  </head>
+  <body>
+  
+    <div id="topnav" class="topnav secure">
+      <a class="navbar-brand mr-4" href="#">Communication LTD</a>
+      {% if isAuthenticated == 'true' %}
+        <!-- LOGGED in  -->
+        <a {% if page_name == 'clients' %} class="active" {% endif %} href="/clients">Clients</a>
+        <a {% if page_name == 'change_pwd' %} class="active" {% endif %} href="/change-pwd">Change Password</a>
+        <a {% if page_name == 'logout' %} class="active" {% endif %} href="/logout">Logout</a>
+      {% else %}
+        <!-- not logged in -->
+      <a {% if page_name == 'login' %} class="active" {% endif %} href="/login">Login</a>
+      <a {% if page_name == 'register' %} class="active" {% endif %} href="/register">Register</a>
+      <a {% if page_name == 'forgot-pwd' %} class="active" {% endif %} href="/forgot-pwd">Forgot Password?</a>
+      {% endif %}
+      <a {% if page_name == 'about' %} class="active" {% endif %} href="/about">About</a>
+    </div>
+  </body>
+  

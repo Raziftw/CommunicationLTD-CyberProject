@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+{% load static %}   
+<html>
+    <head>
+
+        <link rel="stylesheet" href='{% static "/css/mystyle.css" %}'>
+        <title>Communication LTD Project</title>
+    </head>
+    <body>
+        <Body background="https://i.imgur.com/V7HF1AE.jpg">
+        <script type="text/javascript" src='{% static "js/myscript.js" %}' defer></script>
+
+        {% include 'navbar.html' %}
+        
+        <h4 id='mode-text' style="margin-left:20px" >Mode: Secure</h4>
+        <label class="switch" style="margin-left:32px">
+            <input id="toggle-button" type="checkbox" onchange="toggle_clicked(this)" checked >
+            <span class="slider round"></span>
+          </label>
+        
+        
+          {% include 'hello_user.html' %}
+
+        <h1 style="text-align: center; position: flex;">Communication LTD</h1>
+
+        <h2 style="text-align: center; position: flex;"> {{ title|title }}</h2>
+
+        {% block content %}
+        replace me
+        {% endblock %}
+
+        {% if messages %}
+            {% for message in messages %}
+                {% if message.tags %}  <script>alert("{{ message }}")</script> {% endif %}
+            {% endfor %}
+        {% endif %}
+    </body>
+</html>

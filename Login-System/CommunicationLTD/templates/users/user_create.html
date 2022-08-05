@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div id="secure-form-register">
+    <form method='POST' style="text-align: center; position: flex;">
+        {{ form.as_p }} {% csrf_token %}
+        <input type='submit' value='Register' />
+    </form>
+    {% if user_new %}
+    <h4 style="text-align: center; position: flex;"> {{ user_new.username }} was created sucessfully!</h4>
+    {% endif %}
+</div>
+<div id="insecure-form-register">
+    <form method='GET' style="text-align: center; position: flex;">
+        {{ form.as_p }} {% csrf_token %}
+        <input type='submit' value='Register' />
+    </form>
+    {% if user_new %}
+    <h4 style="text-align: center; position: flex;"> {{ user_new.username }} was created sucessfully!</h4>
+    {% endif %}
+    {% if users %}
+    {% for user in users %}
+    <h4 style="text-align: center; position: flex;"> {{ user.username }} was created sucessfully!</h4>
+    {% endfor %}
+    {% endif %}
+</div>
+{% include 'password_policy.html' %}
+
+
+{% endblock %}

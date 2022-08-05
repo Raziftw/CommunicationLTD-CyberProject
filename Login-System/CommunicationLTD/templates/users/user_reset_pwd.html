@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+{% include 'password_policy.html' %}
+
+<h3 style="text-align: center; position: flex;">Reset Password</h3>
+<form method='POST' style="text-align: center; position: flex;">
+{{ form.as_p }} {% csrf_token %}
+<input type='submit' value='Change password' />
+</form>
+
+{% endblock %}
